@@ -11,7 +11,8 @@ namespace iayos.extensions
 		[DebuggerStepThrough]
 		public static int? ToNullableInt(this string text)
 		{
-			if (!int.TryParse(text, out int result)) return null;
+			int result;
+			if (!int.TryParse(text, out result)) return null;
 			return result;
 		}
 
@@ -19,7 +20,8 @@ namespace iayos.extensions
 		[DebuggerStepThrough]
 		public static long? ToNullableLong(this string text)
 		{
-			if (!long.TryParse(text, out long result)) return null;
+			long result;
+			if (!long.TryParse(text, out result)) return null;
 			return result;
 		}
 
@@ -41,7 +43,8 @@ namespace iayos.extensions
 		[DebuggerStepThrough]
 		public static float? ToNullableFloat(this string text)
 		{
-			if (!float.TryParse(text, out float result)) return null;
+			float result;
+			if (!float.TryParse(text, out result)) return null;
 			return result;
 		}
 
@@ -63,7 +66,8 @@ namespace iayos.extensions
 		[DebuggerStepThrough]
 		public static double? ToNullableDouble(this string text)
 		{
-			if (!double.TryParse(text, out double result)) return null;
+			double result;
+			if (!double.TryParse(text, out result)) return null;
 			return result;
 		}
 
@@ -85,7 +89,8 @@ namespace iayos.extensions
 		[DebuggerStepThrough]
 		public static decimal? ToNullableDecimal(this string text)
 		{
-			if (!decimal.TryParse(text, out decimal result)) return null;
+			decimal result;
+			if (!decimal.TryParse(text, out result)) return null;
 			return result;
 		}
 
@@ -106,14 +111,17 @@ namespace iayos.extensions
 		[DebuggerStepThrough]
 		public static DateTime? ToNullableDateTime(this string text, DateTime defaulTime)
 		{
-			return !DateTime.TryParse(text, out DateTime result) ? defaulTime : result;
+			DateTime result;
+			if (!DateTime.TryParse(text, out result)) return defaulTime;
+			return result;
 		}
 
 
 		[DebuggerStepThrough]
 		public static DateTime? ToNullableDateTime(this string text)
 		{
-			if (!DateTime.TryParse(text, out DateTime result)) return null;
+			DateTime result;
+			if (!DateTime.TryParse(text, out result)) return null;
 			return result;
 		}
 
@@ -121,14 +129,17 @@ namespace iayos.extensions
 		[DebuggerStepThrough]
 		public static DateTimeOffset? ToNullableDateTimeOffset(this string text, DateTimeOffset defaultTime)
 		{
-			return !DateTimeOffset.TryParse(text, out DateTimeOffset result) ? defaultTime : result;
+			DateTimeOffset result;
+			if (!DateTimeOffset.TryParse(text, out result)) return defaultTime;
+			return result;
 		}
 
 
 		[DebuggerStepThrough]
 		public static DateTimeOffset? ToNullableDateTimeOffset(this string text)
 		{
-			if (!DateTimeOffset.TryParse(text, out DateTimeOffset result)) return null;
+			DateTimeOffset result;
+			if (!DateTimeOffset.TryParse(text, out result)) return null;
 			return result;
 		}
 
@@ -136,7 +147,10 @@ namespace iayos.extensions
 		[DebuggerStepThrough]
 		public static string RemoveLineEndings(this string value)
 		{
-			if (string.IsNullOrEmpty(value)) return value;
+			if (String.IsNullOrEmpty(value))
+			{
+				return value;
+			}
 			var lineSeparator = ((char)0x2028).ToString();
 			var paragraphSeparator = ((char)0x2029).ToString();
 
@@ -144,5 +158,5 @@ namespace iayos.extensions
 		}
 
 	}
-	
+
 }
