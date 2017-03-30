@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq.Expressions;
 using System.Reflection;
 using iayos.extensions.ArrayExtensions;
 
@@ -87,6 +88,42 @@ namespace iayos.extensions
 
 
 		#region Property extensions
+
+
+		/// <summary>
+		/// Get property name for an INSTANCE:
+		/// e.g. 
+		/// User user = new User();
+		/// string propertyName = user.GetPropertyName (u =&gt; u.Email);
+		/// </summary>
+		/// <typeparam name="TObject"></typeparam>
+		/// <param name="type"></param>
+		/// <param name="propertyRefExpr"></param>
+		/// <returns></returns>
+		[DebuggerStepThrough]
+		public static string GetPropertyName<TObject>(this TObject type, Expression<Func<TObject, object>> propertyRefExpr)
+		{
+			return GetPropertyNameCore(propertyRefExpr.Body);
+		}
+
+		
+		[DebuggerStepThrough]
+		private static string GetPropertyNameCore(Expression propertyRefExpr)
+		{
+			if (propertyRefExpr == null) throw new ArgumentNullException("propertyRefExpr", "propertyRefExpr is null.");
+
+			MemberExpression memberExpr = propertyRefExpr as MemberExpression;
+			if (memberExpr == null)
+			{
+				UnaryExpression unaryExpr = propertyRefExpr as UnaryExpression;
+				if (unaryExpr != null && unaryExpr.NodeType == ExpressionType.Convert) memberExpr = unaryExpr.Operand as MemberExpression;
+			}
+
+			if (memberExpr != null && memberExpr.Member.MemberType == MemberTypes.Property) return memberExpr.Member.Name;
+
+			throw new ArgumentException("No property reference expression was found.", "propertyRefExpr");
+		}
+
 
 		/// <summary>
 		/// Call like: myObject.SetPropertyValue("myProperty", "myValue");

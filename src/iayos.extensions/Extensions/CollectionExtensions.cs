@@ -5,8 +5,27 @@ using System.Linq;
 
 namespace iayos.extensions
 {
-    public static class CollectionExtensions
+
+	public static class CollectionExtensions
     {
+
+		/// <summary>
+		/// Wraps this object instance into an IList&lt;T&gt;
+		/// consisting of a single item. (so we can, for example, use a single method 
+		/// to pass in single and multiple items and validate them)
+		/// See: http://stackoverflow.com/q/1577822/4413476
+		/// </summary>
+		/// <typeparam name="T"> Type of the object. </typeparam>
+		/// <param name="item"> The instance that will be wrapped. </param>
+		/// <returns> An IList&lt;T&gt; consisting of a single item. </returns>
+		[DebuggerStepThrough]
+		public static List<T> YieldList<T>(this T item)
+		{
+			var theList = new List<T>();
+			if (item != null) theList.Add(item);
+			return theList;
+		}
+
 
 		/// <summary>
 		/// Insert a new element into a collection if it doesnt already exist based on predicate comparison. Will init the collection if currently null.

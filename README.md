@@ -31,7 +31,7 @@ wolf.BattleScars.InsertOrSet(secondScar, bs => bs.BattleScarId == secondScar.Bat
 
 // whoops, we later loaded up some second collection of scars and the unbeknownst to us, the first scar has since been updated and is included in this new list, (note: its been updated and hurt more than we thought)
 // --> newInstanceOfFirstScar.DamageFactor = 10;	// note that newly loaded record hurts a lot more
-wolf.BattleScars.InsertOrSet(newInstanceOfFirstScar, bs => bs.BattleScarId = firstScar.BattleScarId);	// dont insert duplicate by id, instead remove old instance and reassign new, based on matching id
+wolf.BattleScars.InsertOrSet(newInstanceOfFirstScar, bs => bs.BattleScarId = newInstanceOfFirstScar.BattleScarId);	// dont insert duplicate by id, instead remove old instance and reassign new, based on matching id
 
 ```
 Results in array of only two scars in our collection
