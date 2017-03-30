@@ -29,12 +29,12 @@ wolf.BattleScars.InsertOrSet(firstScar, bs => bs.BattleScarId == firstScar.Battl
 var secondScar = new BattleScar { BattleScarId = 2, ScarredOn = '18.02.2014', DamageFactor = 5 };
 wolf.BattleScars.InsertOrSet(secondScar, bs => bs.BattleScarId == secondScar.BattleScarId);	// inserts second scar into collection
 
-// whoops, we later loaded up a collection of scars and the first scar is included, (note: its been updated and hurt more than we thought)
-firstScar.DamageFactor = 10;	// a lot more
-wolf.BattleScars.InsertOrSet(firstScar, bs => bs.BattleScarId = firstScar.BattleScarId);	// remove old instance and reassign new, based on matching id
+// whoops, we later loaded up some second collection of scars and the unbeknownst to us, the first scar has since been updated and is included in this new list, (note: its been updated and hurt more than we thought)
+// --> newInstanceOfFirstScar.DamageFactor = 10;	// note that newly loaded record hurts a lot more
+wolf.BattleScars.InsertOrSet(newInstanceOfFirstScar, bs => bs.BattleScarId = firstScar.BattleScarId);	// dont insert duplicate by id, instead remove old instance and reassign new, based on matching id
 
 ```
-Results in array of only two scars, 
+Results in array of only two scars in our collection
 ```
 { id = 1, ScarredOn = '20.08.1981',  DamageFactor = 10 } and { id = 2, ScarredOn = '18.02.2014',  DamageFactor = 5 } 
 ```
