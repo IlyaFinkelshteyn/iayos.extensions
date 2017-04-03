@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using iayos.extensions.ArrayExtensions;
@@ -91,6 +92,35 @@ namespace iayos.extensions
 
 
 		/// <summary>
+		/// 
+		/// http://stackoverflow.com/a/5508068/4413476
+		/// </summary>
+		/// <param name="entity"></param>
+		/// <param name="propertyName"></param>
+		/// <returns></returns>
+		[DebuggerStepThrough]
+		public static object GetPropertyValue(this object entity, string propertyName)
+		{
+			return entity.GetType().GetProperties()
+			   .Single(pi => pi.Name == propertyName)
+			   .GetValue(entity, null);
+		}
+
+
+		/// <summary>
+		/// http://stackoverflow.com/a/5508068/4413476
+		/// </summary>
+		/// <param name="entity"></param>
+		/// <param name="propertyName"></param>
+		/// <returns></returns>
+		[DebuggerStepThrough]
+		public static TValue GetPropertyValue<TValue>(this object entity, string propertyName)
+		{
+			return (TValue)GetPropertyValue(entity, propertyName);
+		}
+
+
+		/// <summary>
 		/// Get property name for an INSTANCE:
 		/// e.g. 
 		/// User user = new User();
@@ -138,6 +168,108 @@ namespace iayos.extensions
 			Type t = Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType;
 			object safeValue = (value == null) ? null : Convert.ChangeType(value, t);
 			property.SetValue(obj, safeValue, null);
+		}
+
+
+
+		/// <summary>
+		/// Callable like: ValidatePropertiesNotEmptyOrDefault(user, u => u.FirstName, u => u.LastName, u => u.Email);
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="obj"></param>
+		/// <param name="expectEmpty"></param>
+		/// <param name="propertySelectors"></param>
+		private static void ValidatePropertiesAgainstEmptyOrDefaultedness<T>(this T obj, bool expectEmpty, params Expression<Func<T, long?>>[] propertySelectors) where T : class
+		{
+			foreach (var propertySelector in propertySelectors)
+			{
+				var expression = propertySelector.Body as MemberExpression;
+				if (expression == null)
+				{
+					throw new ArgumentException("Developer error: Expression is not a property.");
+				}
+
+				var propertyToTest = (propertySelector.Compile())(obj);
+
+				if (propertyToTest.GetValueOrDefault() == 0 && expectEmpty == false) // OK
+				{
+					throw new ArgumentException("Missing required value for " + expression.Member.Name);
+				}
+
+				if (propertyToTest.GetValueOrDefault() != 0 && expectEmpty == true)
+				{
+					throw new ArgumentException($"Detected value for {expression.Member.Name} where required to be empty");
+				}
+			}
+		}
+
+
+
+		private static readonly string ExpressionCannotBeNullMessage = "The expression cannot be null.";
+
+		private static readonly string InvalidExpressionMessage = "Invalid expression.";
+
+
+		[DebuggerStepThrough]
+		public static string GetMemberName<T>(this T instance, Expression<Func<T, object>> expression)
+		{
+			return GetMemberName(expression.Body);
+		}
+
+
+		[DebuggerStepThrough]
+		public static List<string> GetMemberNames<T>(this T instance, params Expression<Func<T, object>>[] expressions)
+		{
+			return expressions.Select(cExpression => GetMemberName(cExpression.Body)).ToList();
+		}
+
+
+		[DebuggerStepThrough]
+		public static string GetMemberName<T>(this T instance, Expression<Action<T>> expression)
+		{
+			return GetMemberName(expression.Body);
+		}
+
+
+		[DebuggerStepThrough]
+		private static string GetMemberName(Expression expression)
+		{
+			if (expression == null) throw new ArgumentException(ExpressionCannotBeNullMessage);
+
+			if (expression is MemberExpression)
+			{
+			//	Reference type property or field
+				var memberExpression = (MemberExpression)expression;
+				return memberExpression.Member.Name;
+			}
+
+			if (expression is MethodCallExpression)
+			{
+				//	Reference type method
+				var methodCallExpression = (MethodCallExpression)expression;
+				return methodCallExpression.Method.Name;
+			}
+
+			if (expression is UnaryExpression)
+			{
+				// Property, field of method returning value type
+				var unaryExpression = (UnaryExpression)expression;
+				return GetMemberName(unaryExpression);
+			}
+
+			throw new ArgumentException(InvalidExpressionMessage);
+		}
+
+
+		private static string GetMemberName(UnaryExpression unaryExpression)
+		{
+			if (unaryExpression.Operand is MethodCallExpression)
+			{
+				var methodExpression = (MethodCallExpression)unaryExpression.Operand;
+				return methodExpression.Method.Name;
+			}
+
+			return ((MemberExpression)unaryExpression.Operand).Member.Name;
 		}
 
 		#endregion
