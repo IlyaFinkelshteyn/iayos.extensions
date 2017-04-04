@@ -33,15 +33,28 @@ namespace iayos.extensions
 
 
 		/// <summary>
-		/// Get the maximum length for a given property as defined by its attributes
+		/// Get the maximum length for a given property as defined by its StringLength
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="instance"></param>
 		/// <param name="propertyExpression"></param>
 		/// <returns></returns>
-		public static Int32 GetMaxLength<T>(this T instance, Expression<Func<T, string>> propertyExpression)
+		public static Int32 GetStringLengthMax<T>(this T instance, Expression<Func<T, string>> propertyExpression)
 		{
-			return AttributeHelper.GetMaxLength<T>(propertyExpression);
+			return AttributeHelper.GetStringLengthMax<T>(propertyExpression);
+		}
+
+
+		/// <summary>
+		/// Get the minimum length for a given property as defined by its StringLength
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="instance"></param>
+		/// <param name="propertyExpression"></param>
+		/// <returns></returns>
+		public static Int32 GetStringLengthMin<T>(this T instance, Expression<Func<T, string>> propertyExpression)
+		{
+			return AttributeHelper.GetStringLengthMin<T>(propertyExpression);
 		}
 
 
