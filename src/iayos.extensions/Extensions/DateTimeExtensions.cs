@@ -17,7 +17,7 @@ namespace iayos.extensions
 
 
 		/// <summary>
-		/// return date.StartOfMonth().AddMonths(1);
+		/// return date.StartOfNextMonth().AddMonths(1);
 		/// </summary>
 		/// <param name="date"></param>
 		/// <returns></returns>
@@ -38,26 +38,26 @@ namespace iayos.extensions
 		}
 
 
-		/// <summary>
-		/// return FirstOfNextMonth(date).AddDays(-1);
-		/// </summary>
-		/// <param name="date"></param>
-		/// <returns></returns>
-		public static DateTime EndOfMonth(this DateTime date)
-		{
-			return FirstOfNextMonth(date).AddDays(-1);
-		}
+		///// <summary>
+		///// return FirstOfNextMonth(date).AddDays(-1);
+		///// </summary>
+		///// <param name="date"></param>
+		///// <returns></returns>
+		//public static DateTime EndOfMonth(this DateTime date)
+		//{
+		//	return FirstOfNextMonth(date).AddDays(-1);
+		//}
 
 
-		/// <summary>
-		/// return date.StartOfMonth().AddMonths(1);
-		/// </summary>
-		/// <param name="date"></param>
-		/// <returns></returns>
-		public static DateTime FirstOfNextMonth(this DateTime date)
-		{
-			return date.StartOfNextMonth().AddMonths(1);
-		}
+		///// <summary>
+		///// return date.StartOfMonth().AddMonths(1);
+		///// </summary>
+		///// <param name="date"></param>
+		///// <returns></returns>
+		//public static DateTime FirstOfNextMonth(this DateTime date)
+		//{
+		//	return date.StartOfMonth().AddMonths(1);
+		//}
 
 
 		/// <summary>
