@@ -12,31 +12,7 @@ namespace iayos.extensions
 	public static class AttributeHelper
 	{
 
-		/// <summary>
-		/// Reflect over a class and look for a particular Attribute on a particular property
-		/// </summary>
-		/// <typeparam name="TClass"></typeparam>
-		/// <typeparam name="TAttribute"></typeparam>
-		/// <param name="propertyRefExpr"></param>
-		/// <returns></returns>
-		public static TAttribute GetAttributeOnProperty<TClass, TAttribute>(
-			Expression<Func<TClass, object>> propertyRefExpr
-			)
-			where TClass : class, new()
-			where TAttribute : Attribute
-		{
-			// Get the string name of the desired property
-			var propertyName = PropertyHelper.GetName(propertyRefExpr);
-
-			// Get the property itself
-			var property = typeof(TClass).GetProperty(propertyName);
-			//var property = typeof(TEntity).GetProperties().Single(p => p.Name == propertyName);
-
-			var attrType = typeof(TAttribute);
-			return (TAttribute)property.GetCustomAttributes(attrType, false).First();
-		}
-
-
+		
 		/// <summary>
 		/// Get any value from attribute from any class
 		/// var authorName = AttributeHelper.GetPropertyAttributeValue&lt;Book, string, AuthorAttribute, string&gt;(prop =&gt; prop.Name, attr =&gt; attr.Author);

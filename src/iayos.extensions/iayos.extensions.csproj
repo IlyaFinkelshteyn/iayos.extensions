@@ -50,9 +50,16 @@
     <Compile Include="Extensions\DateTimeOffsetExtensions.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="Helpers\TypeAccessor.cs" />
+    <Compile Include="Helpers\Denis\PropertyInfoExtensions.cs" />
+    <Compile Include="Helpers\Denis\TypeAccessor.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Helpers\AttributeHelper.cs" />
-    <Compile Include="Helpers\PropertyHelper.cs" />
+    <Compile Include="Helpers\ByteTerrace.CSharp.TypeAccessor\PropertyAccessor.cs" />
+    <Compile Include="Helpers\Denis\TypeExtensions.cs" />
+    <Compile Include="Helpers\ClassHelper.cs" />
+    <Compile Include="Helpers\ByteTerrace.CSharp.TypeAccessor\PropertyReader.cs" />
+    <Compile Include="Helpers\ByteTerrace.CSharp.TypeAccessor\PropertyWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Extensions\SortedListExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />

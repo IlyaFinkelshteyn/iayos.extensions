@@ -1,6 +1,8 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.CompilerServices;
 using iayos.extensions;
 
 namespace iayos.extensions.Test
@@ -17,7 +19,7 @@ namespace iayos.extensions.Test
 			var secondchild = new Child { ChildId = 1, Name = "Rodrigo" };
 			parent.Children.InsertOrSet(secondchild, c => c.ChildId == secondchild.ChildId);
 
-			var length = AttributeHelper.GetAttributeOnMethod<Parent, StringLengthAttribute>(nameof(Parent.MyTest));
+			//var length = AttributeHelper.GetAttributeOnMethod<Parent, StringLengthAttribute>(nameof(Parent.MyTest));
 
 			//parent.GetAttributeOnProperty<StringLengthAttribute>(x => x.Children);
 			var test = AttributeHelper.GetAttributeOnProperty<Parent, StringLengthAttribute>(x => x.Children);
@@ -25,16 +27,28 @@ namespace iayos.extensions.Test
 			//var stuff = parent.GetAttributeFrom<StringLengthAttribute>() .GetAttributeOnMethod<StringLengthAttribute>(nameof(Parent.MyTest), true);
 
 			//ICollection<Child> shit;
-			//shit = new Collection<Child>();
+			//shdit = new Collection<Child>();
+
+			//var sahit = parent.GetPropertyAttribute<Parent, StringLengthAttribute>(x => x)
+
+			var test3 = parent.GetPropertyName(x => x.ParentId);
+
+			//var testt = parent.GetPropertyAttribute<Parent, StringLengthAttribute>(x => x.ParentId);
+
+			//var morshit = parent.GetAttributeOnProperty<Parent, int, StringLengthAttribute>(x => x.ParentId);
 		}
 	}
 
 	public class Parent
 	{
 
+		[StringLength(1)]
 		public List<Child> Children { get; set; } = new List<Child>();
 
-		
+		[MaxLength(1)]
+		public int ParentId { get; set; }
+
+
 		public void MyTest()
 		{
 			
