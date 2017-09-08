@@ -54,7 +54,7 @@ namespace iayos.extensions
 			var expression = (MemberExpression)propertyExpression.Body;
 			var propertyInfo = (PropertyInfo)expression.Member;
 			var attr = propertyInfo.GetCustomAttributes(typeof(TAttribute), true).FirstOrDefault() as TAttribute;
-			if (attr == null) throw new MissingMemberException(typeof(TClass).Name + "." + propertyInfo.Name);
+			if (attr == null) throw new MissingMemberException(typeof(TClass).Name + "." + propertyInfo.Name, typeof(TAttribute).Name);
 			return valueSelector(attr);
 		}
 

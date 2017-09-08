@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
 
 namespace iayos.extensions
 {
@@ -25,12 +24,11 @@ namespace iayos.extensions
 			Expression<Func<TClass, object>> expression
 		)
 			where TClass : class, new()
-			where TAttribute : Attribute
 		{
 			var propertyName = instance.GetPropertyName(expression);
 			var attrType = typeof(TAttribute);
 			var property = instance.GetType().GetProperty(propertyName);
-			return property.GetCustomAttributes(attrType, false).First() as TAttribute;
+			return (TAttribute)property.GetCustomAttributes(attrType, false).First();
 		}
 
 
