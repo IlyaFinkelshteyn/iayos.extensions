@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("iayos.extensions.Test")]
+[assembly: AssemblyTitle("iayos.extensions.Test.DotNet")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("iayos.extensions.Test")]
+[assembly: AssemblyProduct("iayos.extensions.Test.DotNet")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("17c7e821-76c0-4d23-97a4-c792ba030c69")]
+[assembly: Guid("9c982e29-9b83-44a0-8d8a-0d42bfebf13c")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using iayos.extensions;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace iayos.extensions.Test
+namespace iayos.extensions.Test.DotNet
 {
 	class Program
 	{
@@ -34,10 +36,10 @@ namespace iayos.extensions.Test
 
 		public List<Child> Children { get; set; } = new List<Child>();
 
-		
+
 		public void MyTest()
 		{
-			
+
 		}
 
 	}
@@ -50,28 +52,6 @@ namespace iayos.extensions.Test
 
 		[StringLength(12)]
 		public string Name { get; set; }
-
-	}
-
-	public static class TestStuff
-	{
-
-		///// <summary>
-		///// Get a particular Attribute from a particular Method on a particular object instance
-		///// </summary>
-		///// <typeparam name="TClass"></typeparam>
-		///// <typeparam name="TAttribute"></typeparam>
-		///// <param name="obj"></param>
-		///// <param name="methodName"></param>
-		///// <param name="throwOnError"></param>
-		///// <returns></returns>
-		//public static TAttribute GetAttributeOnMethod<T, TAttribute>(this T obj, string methodName, bool throwOnError = true)
-		//	//where TClass : class, new()
-		//	where TAttribute : Attribute
-		//{
-		//	//var type = typeof(obj.GetType());
-		//	return AttributeHelper.GetAttributeOnMethod<T, TAttribute>(methodName, throwOnError);
-		//}
 
 	}
 }

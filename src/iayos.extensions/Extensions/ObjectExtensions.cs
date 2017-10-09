@@ -22,7 +22,7 @@ namespace iayos.extensions
 		public static bool IsPrimitive(this Type type)
 		{
 			if (type == typeof(String)) return true;
-			return (type.IsValueType & type.IsPrimitive);
+			return type.GetTypeInfo().IsPrimitive;
 		}
 
 		[DebuggerStepThrough]
@@ -59,10 +59,11 @@ namespace iayos.extensions
 		[DebuggerStepThrough]
 		private static void RecursiveCopyBaseTypePrivateFields(object originalObject, IDictionary<object, object> visited, object cloneObject, Type typeToReflect)
 		{
-			if (typeToReflect.BaseType != null)
+			var baseType = typeToReflect.GetTypeInfo().BaseType;
+			if (baseType != null)
 			{
-				RecursiveCopyBaseTypePrivateFields(originalObject, visited, cloneObject, typeToReflect.BaseType);
-				CopyFields(originalObject, visited, cloneObject, typeToReflect.BaseType, BindingFlags.Instance | BindingFlags.NonPublic, info => info.IsPrivate);
+				RecursiveCopyBaseTypePrivateFields(originalObject, visited, cloneObject, baseType);
+				CopyFields(originalObject, visited, cloneObject, baseType, BindingFlags.Instance | BindingFlags.NonPublic, info => info.IsPrivate);
 			}
 		}
 
@@ -300,7 +301,7 @@ namespace iayos.extensions
 			[DebuggerStepThrough]
 			public static void ForEach(this Array array, Action<Array, int[]> action)
 			{
-				if (array.LongLength == 0) return;
+				if (array.Length == 0) return;
 				ArrayTraverse walker = new ArrayTraverse(array);
 				do action(array, walker.Position);
 				while (walker.Step());
