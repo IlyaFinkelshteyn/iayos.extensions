@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{17C7E821-76C0-4D23-97A4-C792BA030C69}</ProjectGuid>
+    <ProjectGuid>{9C982E29-9B83-44A0-8D8A-0D42BFEBF13C}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>iayos.extensions.Test</RootNamespace>
-    <AssemblyName>iayos.extensions.Test</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <RootNamespace>iayos.extensions.Test.DotNet</RootNamespace>
+    <AssemblyName>iayos.extensions.Test.DotNet</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -51,7 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\iayos.extensions\iayos.extensions.csproj">
-      <Project>{8cb19647-1ccb-4065-92d3-b51519118be4}</Project>
+      <Project>{b33cabb0-b7cd-41db-bd8c-3d788eca2cff}</Project>
       <Name>iayos.extensions</Name>
     </ProjectReference>
   </ItemGroup>

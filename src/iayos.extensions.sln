@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iayos.extensions", "iayos.extensions\iayos.extensions.csproj", "{8CB19647-1CCB-4065-92D3-B51519118BE4}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildAndDeploy", "BuildAndDeploy", "{CD2635DF-57DE-4525-87AF-25FC7F3B7EAB}"
 	ProjectSection(SolutionItems) = preProject
 		..\appveyor.yml = ..\appveyor.yml
@@ -12,7 +10,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildAndDeploy", "BuildAndD
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iayos.extensions.Test", "iayos.extensions.Test\iayos.extensions.Test.csproj", "{17C7E821-76C0-4D23-97A4-C792BA030C69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "iayos.extensions", "iayos.extensions\iayos.extensions.csproj", "{B33CABB0-B7CD-41DB-BD8C-3D788ECA2CFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iayos.extensions.Test.DotNet", "iayos.extensions.Test.DotNet\iayos.extensions.Test.DotNet.csproj", "{9C982E29-9B83-44A0-8D8A-0D42BFEBF13C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,14 +20,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8CB19647-1CCB-4065-92D3-B51519118BE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8CB19647-1CCB-4065-92D3-B51519118BE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8CB19647-1CCB-4065-92D3-B51519118BE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8CB19647-1CCB-4065-92D3-B51519118BE4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{17C7E821-76C0-4D23-97A4-C792BA030C69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{17C7E821-76C0-4D23-97A4-C792BA030C69}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{17C7E821-76C0-4D23-97A4-C792BA030C69}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{17C7E821-76C0-4D23-97A4-C792BA030C69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B33CABB0-B7CD-41DB-BD8C-3D788ECA2CFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B33CABB0-B7CD-41DB-BD8C-3D788ECA2CFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B33CABB0-B7CD-41DB-BD8C-3D788ECA2CFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B33CABB0-B7CD-41DB-BD8C-3D788ECA2CFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C982E29-9B83-44A0-8D8A-0D42BFEBF13C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C982E29-9B83-44A0-8D8A-0D42BFEBF13C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C982E29-9B83-44A0-8D8A-0D42BFEBF13C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C982E29-9B83-44A0-8D8A-0D42BFEBF13C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
