@@ -40,6 +40,7 @@
   branches:
     only:
       - master
+      - /hotfix.*/  # also deploy any hotfixes
 
   os: Visual Studio 2015
   assembly_info:
