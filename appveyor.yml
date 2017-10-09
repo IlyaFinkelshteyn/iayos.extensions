@@ -5,7 +5,7 @@
     #  - develop
     #  - release
       
-  os: Visual Studio 2015
+  os: Visual Studio 2017
   assembly_info:
     patch: true
     file: '**\AssemblyInfo.*'
